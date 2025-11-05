@@ -1,12 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello World</title>
-  </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio y Registro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Bienvenido</h1>
 
-  <body>
-    <h1>Hello World</h1>
-  </body>
+        <div id="login-section">
+            <h2>Iniciar Sesión</h2>
+            <form id="login-form">
+                <input type="text" id="login-username" placeholder="Usuario" required>
+                <input type="password" id="login-password" placeholder="Contraseña" required>
+                <button type="submit">Iniciar Sesión</button>
+                <p id="login-message" class="message"></p>
+            </form>
+            <p>¿No tienes una cuenta? <a href="#" id="show-register">Regístrate aquí</a></p>
+        </div>
+
+        <div id="register-section" style="display:none;">
+            <h2>Registro de Usuario</h2>
+            <form id="register-form">
+                <input type="text" id="register-username" placeholder="Usuario" required>
+                <input type="email" id="register-email" placeholder="Correo Electrónico" required>
+                <input type="password" id="register-password" placeholder="Contraseña" required>
+                <input type="text" id="register-address" placeholder="Dirección">
+                <input type="tel" id="register-phone" placeholder="Teléfono">
+                <button type="submit">Registrar</button>
+                <p id="register-message" class="message"></p>
+            </form>
+            <p>¿Ya tienes una cuenta? <a href="#" id="show-login">Iniciar Sesión</a></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
