@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 import os
@@ -7,7 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 # Cargar variables de entorno del archivo .env
 load_dotenv()
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='src') # Especifica la carpeta 'src' como carpeta de estáticos
 
 # Configuración de la base de datos
 app.config['SQLALCHEMY_DATABASE_URI'] = (
@@ -90,10 +90,15 @@ def get_users():
         })
     return jsonify(users_data)
 
-# Ruta principal de la aplicación
+# Ruta principal para servir el frontend (index.html)
 @app.route('/')
-def hello_world():
-    return 'Hello, World! This is your Flask backend with MySQL.'
+def serve_index():
+    return send_from_directory(app.static_folder, 'index.html')
+
+# Ruta para servir otros archivos estáticos como dashboard.html o script.js
+@app.route('/<path:filename>')
+def serve_static(filename):
+    return send_from_directory(app.static_folder, filename)
 
 if __name__ == '__main__':
     with app.app_context():
